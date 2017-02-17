@@ -1,0 +1,37 @@
+{% extends "base/base.html" %}
+{% block content %}
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-6">
+				<table class="table table-striped box box-primary">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Usuario</th>
+							<th>Grupos</th>
+						</tr>
+					</thead>
+					{% for perfil in perfil_list %}
+						<tr>
+							<td>
+								<a href="{{perfil.get_absolute_url}}">{{perfil}}</a>
+							</td>
+							<td>
+								{{perfil.user}}
+							</td>
+							<td>
+								{% for grupo in perfil.user.groups.all %}
+									{{grupo}}, 
+								{% endfor %}
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock content %}
